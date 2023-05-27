@@ -12,12 +12,11 @@ namespace Predictor
     public static class Service
     {
         [KRPCProcedure]
-        public static KRPC.Utils.Tuple<Double, Double> ImpactPos(KRPC.SpaceCenter.Services.Vessel vessel)
+        public static Tuple<Double, Double> ImpactPos(KRPC.SpaceCenter.Services.Vessel vessel)
         {
             Class1 pr = new Class1(vessel.InternalVessel);
             CelestialBody body = vessel.InternalVessel.orbit.referenceBody;
             Vector3? impactVect = GetImpactPosition(pr, vessel.InternalVessel);
-
             /*if (vessel.Situation.Equals("Flying") || vessel.Situation.Equals(VesselSituation.SubOrbital))
             {*/
                 while (impactVect != null)
@@ -25,7 +24,7 @@ namespace Predictor
                     var worldImpactPos = (Vector3d)impactVect + body.position;
                     var lat = body.GetLatitude(worldImpactPos);
                     var lng = DegreeFix(body.GetLongitude(worldImpactPos), -180);
-                    return new KRPC.Utils.Tuple<Double, Double>(lat, lng);
+                    return new Tuple<Double, Double>(lat, lng);
                 }
                 throw new Exception("No impact pos");
             /*}

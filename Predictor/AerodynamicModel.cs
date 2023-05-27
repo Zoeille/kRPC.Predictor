@@ -73,8 +73,6 @@ namespace Predictor
 
         private void InitCache()
         {
-            Debug.Log("Trajectories: Initializing cache");
-
             double maxCacheVelocity = 10000.0;
             double maxCacheAoA = 180.0 / 180.0 * Math.PI;
 
